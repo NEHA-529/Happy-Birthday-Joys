@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday Joys</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            overflow: hidden;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            width: 330px;
+            margin: 120px auto;
+            animation: fadeIn 1s;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: #ff4d6d;
+        }
+
+        button {
+            padding: 12px;
+            margin: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #ff4d6d;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            width: 220px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #e63946;
+            transform: scale(1.05);
+        }
+
+        /* Letter Animation */
+        .word span {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff4d6d;
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        .word span:nth-child(2){ animation-delay: 0.2s;}
+        .word span:nth-child(3){ animation-delay: 0.4s;}
+        .word span:nth-child(4){ animation-delay: 0.6s;}
+        .word span:nth-child(5){ animation-delay: 0.8s;}
+        .word span:nth-child(6){ animation-delay: 1s;}
+        .word span:nth-child(7){ animation-delay: 1.2s;}
+        .word span:nth-child(8){ animation-delay: 1.4s;}
+
+        @keyframes bounce {
+            0% {transform: translateY(0);}
+            50% {transform: translateY(-15px);}
+            100% {transform: translateY(0);}
+        }
+
+        .finalText {
+            font-family: 'Pacifico', cursive;
+            font-size: 38px;
+            color: #ff4d6d;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Balloons */
+        .balloon {
+            position: fixed;
+            bottom: -150px;
+            width: 50px;
+            height: 65px;
+            border-radius: 50%;
+            animation: floatUp 12s linear infinite;
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 40px;
+            background: gray;
+            top: 65px;
+            left: 24px;
+        }
+
+        .b1 { left:10%; background:#ff4d6d; animation-delay: 0s;}
+        .b2 { left:30%; background:#ffbe0b; animation-delay: 2s;}
+        .b3 { left:50%; background:#3a86ff; animation-delay: 4s;}
+        .b4 { left:70%; background:#8338ec; animation-delay: 6s;}
+        .b5 { left:90%; background:#fb5607; animation-delay: 8s;}
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-110vh); }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+<div class="balloon b4"></div>
+<div class="balloon b5"></div>
+
+<!-- Welcome -->
+<div class="box" id="welcome">
+    <h1>😜 Friendship Test 😜</h1>
+    <p>Only Joys Allowed!</p>
+    <button onclick="showPage('q1')">Start</button>
+</div>
+
+<!-- Question 1 -->
+<div class="box" id="q1" style="display:none;">
+    <h2>Question 1</h2>
+    <p>What is the most special thing in our friendship?</p>
+    <button onclick="showWord('HAPPY','q2')">Our fights 😂</button>
+    <button onclick="showWord('HAPPY','q2')">Our memories 📸</button>
+    <button onclick="showWord('HAPPY','q2')">Our caring ❤️</button>
+</div>
+
+<!-- Word Page -->
+<div class="box" id="word" style="display:none;">
+    <div class="word" id="wordText"></div>
+    <button onclick="nextPage()">Next</button>
+</div>
+
+<!-- Question 2 -->
+<div class="box" id="q2" style="display:none;">
+    <h2>Question 2</h2>
+    <p>What am I to you?</p>
+    <button onclick="showWord('BIRTHDAY','q3')">Friend 🙂</button>
+    <button onclick="showWord('BIRTHDAY','q3')">Best Friend ❤️</button>
+    <button onclick="showWord('BIRTHDAY','q3')">Sister 👭</button>
+</div>
+
+<!-- Question 3 -->
+<div class="box" id="q3" style="display:none;">
+    <h2>Question 3</h2>
+    <p>Will you stay with me forever?</p>
+    <button onclick="showWord('JOYS','final')">Yes ❤️</button>
+    <button onclick="showWord('JOYS','final')">No 😜</button>
+</div>
+
+<!-- Final Page -->
+<div class="box" id="final" style="display:none;">
+    <h1 class="finalText">🎂 Happy Birthday Joys 🎂</h1>
+    <p>
+        20 Years of Friendship 💖<br><br>
+        You are my best friend forever.<br>
+        My happiness, My memory.<br><br>
+        I am lucky to have you in my life.<br><br>
+        Love you Joys ❤️
+    </p>
+</div>
+
+<script>
+let next = "";
+
+function showPage(page){
+    document.getElementById("welcome").style.display="none";
+    document.getElementById(page).style.display="block";
+}
+
+function showWord(word, nextPage){
+    document.getElementById("q1").style.display="none";
+    document.getElementById("q2").style.display="none";
+    document.getElementById("q3").style.display="none";
+
+    document.getElementById("word").style.display="block";
+
+    let letters = "";
+    for(let i=0;i<word.length;i++){
+        letters += "<span>" + word[i] + "</span>";
+    }
+
+    document.getElementById("wordText").innerHTML = letters;
+    next = nextPage;
+}
+
+function nextPage(){
+    document.getElementById("word").style.display="none";
+    document.getElementById(next).style.display="block";
+}
+</script>
+
+</body>
+</html>
